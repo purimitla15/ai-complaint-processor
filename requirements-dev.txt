@@ -1,0 +1,3 @@
+-r requirements.txt
+# Only needed to regenerate the sample PDFs in data/
+reportlab>=4.0
