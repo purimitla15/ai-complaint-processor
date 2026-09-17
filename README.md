@@ -147,7 +147,7 @@ ai-complaint-processor/
 │   ├── case_summaries/
 │   └── final_report.csv
 ├── runs/gemini/                 # same batch run on Gemini, for comparison
-├── docs/                        # architecture diagram (png, svg, mermaid)
+├── docs/                        # architecture diagram (png, svg, mermaid), demo video
 ├── scripts/generate_sample_data.py
 ├── src/
 │   ├── config.py                # settings from environment, with validation
@@ -234,6 +234,10 @@ python scripts/generate_sample_data.py            # regenerate sample docs (need
 ```
 
 Exit code is `0` if at least one document was processed, and `1` if nothing could be processed or the configuration is invalid. Individual file failures are listed in the summary and in `final_report.csv`.
+
+### Demo video
+
+[`docs/demo_video.mp4`](docs/demo_video.mp4) (2 min 31 s) is a screen recording of `python main.py --data-dir demo_data` on Gemini with `--workers 3`: 3 complaints processed, a corrupt PDF reported as `FAILED` and an `.xlsx` file `SKIPPED`, followed by the generated JSON, customer email, case summary and final report. The yellow `HTTP 429: RESOURCE_EXHAUSTED` warnings during the run come from Gemini free-tier rate limits. The client retries and then switches to the fallback model, so every document still completes.
 
 ## 9. Sample Inputs
 
