@@ -1,0 +1,17 @@
+{
+  "source_file": "complaint_003.docx",
+  "processed_at": "2026-09-17T17:34:01",
+  "data": {
+    "customer_name": "Mohammed Irfan",
+    "email": "irfan.m@example.com",
+    "phone_number": "99001 22334",
+    "product_or_service": "Zenbook Air 14 Laptop (16GB / 512GB)",
+    "complaint_category": "Delivery & Shipping",
+    "issue_description": "The customer's laptop order has been delayed past the promised delivery date and has been stuck at the Hyderabad hub for six days. The customer was previously promised an update within 48 hours by a chat agent on 10 September 2026, but no update has been received.",
+    "resolution_provided": null,
+    "is_complaint": "Yes",
+    "escalation_required": "No",
+    "supporting_document_available": "No",
+    "overall_case_status": "Open"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "source_file": "complaint_002.txt",
+  "processed_at": "2026-09-17T17:32:14",
+  "data": {
+    "customer_name": "Priya Sharma",
+    "email": "priya.sharma@example.com",
+    "phone_number": "080-4123-9876",
+    "product_or_service": "FiberNet Broadband 200 Mbps plan",
+    "complaint_category": "Billing & Payment",
+    "issue_description": "The customer was double charged for her broadband bill for the month of August 2026. The duplicate amount has since been credited back to her card.",
+    "resolution_provided": "The duplicate amount of Rs. 1,178 has been credited back to the customer's card.",
+    "is_complaint": "Yes",
+    "escalation_required": "No",
+    "supporting_document_available": "No",
+    "overall_case_status": "Resolved"
+  }
+}

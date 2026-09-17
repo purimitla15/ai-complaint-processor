@@ -1,0 +1,17 @@
+{
+  "source_file": "complaint_004.pdf",
+  "processed_at": "2026-09-17T17:34:11",
+  "data": {
+    "customer_name": "Ananya Reddy",
+    "email": "ananya.reddy@example.com",
+    "phone_number": null,
+    "product_or_service": "PayWise Mobile App",
+    "complaint_category": "Account & Access",
+    "issue_description": "The customer is unable to log in to her PayWise account following the app update on 11 September 2026, receiving a \"Session expired, please try again\" error after entering the OTP. She is concerned because her electricity bill auto-pay is due on 20 September.",
+    "resolution_provided": null,
+    "is_complaint": "Yes",
+    "escalation_required": "No",
+    "supporting_document_available": "Yes",
+    "overall_case_status": "Open"
+  }
+}
