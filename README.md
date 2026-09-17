@@ -246,7 +246,104 @@ All names, companies, emails and phone numbers are fictional.
 
 ## 10. Sample Outputs
 
-SAMPLE_OUTPUT_PLACEHOLDER
+The `output/` folder in this repository contains the **real output of a full run** with `LLM_PROVIDER=ollama` and `qwen2.5:7b` on a 16 GB Apple M3 (about 23 minutes for the batch).
+
+### Console summary
+```
+================================================================
+Processed 8 file(s) in 1388.6s
+  SUCCESS  6
+  PARTIAL  0
+  FAILED   1
+  SKIPPED  1
+Outputs: .../ai-complaint-processor/output
+================================================================
+  ! complaint_007_corrupt.pdf: Load error: Corrupt or unreadable PDF 'complaint_007_corrupt.pdf': Stream has ended unexpectedly
+  ! complaint_008.xlsx: Unsupported file type '.xlsx'
+```
+
+### `final_report.csv` (selected columns)
+| File | Status | Category | Complaint | Escalation | Evidence | Case status | Priority | Email grounding |
+|---|---|---|---|---|---|---|---|---|
+| `complaint_001.pdf` | SUCCESS | Technical Issue | Yes | Yes | Yes | Open | High | Passed |
+| `complaint_002.txt` | SUCCESS | Billing & Payment | No | No | No | Resolved | Low | Revised |
+| `complaint_003.docx` | SUCCESS | Delivery & Shipping | Yes | Yes | No | In Progress | High | Flagged |
+| `complaint_004.pdf` | SUCCESS | Account & Access | Yes | No | Yes | Open | Medium | Revised |
+| `complaint_005.txt` | SUCCESS | General Inquiry | No | No | No | Open | Low | Revised |
+| `complaint_006.docx` | SUCCESS | Refund & Return | Yes | Yes | Yes | Open | High | Revised |
+| `complaint_007_corrupt.pdf` | FAILED | - | - | - | - | - | - | - |
+| `complaint_008.xlsx` | SKIPPED | - | - | - | - | - | - | - |
+
+### Structured extraction: `structured_data/complaint_006.json`
+```json
+{
+  "source_file": "complaint_006.docx",
+  "processed_at": "2026-09-17T17:18:53",
+  "data": {
+    "customer_name": "Kavya Nair",
+    "email": "kavya.nair@example.com",
+    "phone_number": "+91 94470 67890",
+    "product_or_service": "running shoes (Order ST-39021, amount Rs. 4,499)",
+    "complaint_category": "Refund & Return",
+    "issue_description": "Customer returned a pair of running shoes due to incorrect size, but has not received the refund within the promised 7 working days.",
+    "resolution_provided": null,
+    "is_complaint": "Yes",
+    "escalation_required": "Yes",
+    "supporting_document_available": "Yes",
+    "overall_case_status": "Open"
+  }
+}
+```
+
+### Customer email: `customer_emails/complaint_004.txt`
+The first draft claimed the team had "reviewed the attached screenshots" and was "currently investigating". Neither is stated in the ticket, so the grounding check rejected the draft and this revised version was produced:
+```
+To: ananya.reddy@example.com
+Subject: Re: Issue with PayWise Mobile App Login
+X-Grounding-Check: Revised
+
+Dear Ananya Reddy,
+
+Thank you for reaching out to us regarding your issue with the PayWise Mobile App. We understand that you are experiencing difficulties logging in after the app update on 11 September 2026. The app is showing 'Session expired, please try again' after you enter the OTP, and you have tried reinstalling the app and using both mobile data and WiFi without success.
+
+We appreciate your patience and are currently reviewing your case. Our team will thoroughly examine the issue and provide you with a resolution as soon as possible.
+
+Warm regards,
+Customer Support Team
+```
+
+### Case summary: `case_summaries/complaint_006.md`
+```markdown
+# Case Summary - complaint_006
+
+| Field | Value |
+|---|---|
+| Source file | complaint_006.docx |
+| Customer | Kavya Nair |
+| Category | Refund & Return |
+| Escalation required | Yes |
+| Priority | High |
+
+## Case Overview
+Kavya Nair returned running shoes due to incorrect size and has not received the refund within the promised 7 working days. She has followed up multiple times without resolution.
+
+## Key Issue
+Customer has not received refund despite multiple follow-ups and return confirmation.
+
+## Action Taken
+Customer has followed up via email, phone, and chat. Screenshots and chat transcripts are attached.
+
+## Current Status
+Refund not processed after 4 weeks, case is still open.
+
+## Recommended Next Action
+Escalate the case to a manager and request a specific timeline for refund processing.
+```
+
+### Grounding check results in this run
+- **Passed** (1): the first draft had no unsupported claims.
+- **Revised** (4): unsupported statements were detected and removed by regeneration. Examples of rejected statements: *"improving our billing processes to prevent such issues"* (002), *"we do offer extended warranties for our products"* (005).
+- **Flagged** (1, `complaint_003`): kept for human review. In this case it is a **false positive**, because the job start date *is* in the complaint. This illustrates the verifier limitation described below.
 
 ## 11. Key Design Decisions
 
@@ -265,7 +362,8 @@ SAMPLE_OUTPUT_PLACEHOLDER
 - **Scanned (image-only) PDFs** yield no text. OCR (e.g. Tesseract) isn't included, so such files are reported as `FAILED` with "no usable text".
 - **Local 7B models are less accurate** than large hosted models on subtle judgements (e.g. whether escalation is needed, or the category *Product Defect* vs *Technical Issue*). Gemini/OpenAI can be swapped in via `.env`.
 - **Local inference is slow on modest hardware.** On a 16 GB Apple M3 with other apps open, `qwen2.5:7b` generated about 5–6 tokens/s, so a document takes about 2–4 minutes with the grounding check. The same batch on Gemini took under 2 minutes in total. Ollama serves one request at a time by default, so `MAX_WORKERS=1` avoids queue timeouts.
-- **The grounding verifier is itself an LLM** and can be over-strict. It sometimes flags a true statement, which only triggers a harmless rewrite. The evidence-quote check guards against it being too lenient.
+- **The grounding verifier is itself an LLM, and with a 7B model it is inconsistent in both directions.** It sometimes flags a true statement (a harmless rewrite, or a false "Flagged"), and it sometimes misses one. In the sample run, the revised `complaint_006` email still says it "will escalate this matter to a manager", a commitment not in the document. The code checks reduce these errors but cannot remove them, so emails should be reviewed by a person before sending. A stronger model (Gemini/OpenAI) makes fewer mistakes, both when generating and when checking.
+- **Extraction mistakes with the local model**: in the sample run `qwen2.5:7b` left `resolution_provided` empty for `complaint_001`, although a technician visit is described, and chose *Technical Issue* over *Product Defect*. The Gemini run extracted both correctly.
 - **One document is treated as one case.** A file containing several unrelated complaints is summarised as a single case.
 - **Very long documents** are sent whole. There's no chunking, so documents beyond the model's context window would be truncated by the provider.
 - The **case summary is not grounding-checked** (only the customer-facing email is), because its `recommended_next_action` is intentionally a recommendation rather than a fact.

@@ -1,0 +1,17 @@
+{
+  "source_file": "complaint_005.txt",
+  "processed_at": "2026-09-17T17:15:10",
+  "data": {
+    "customer_name": "Suresh Iyer",
+    "email": "suresh.iyer@example.com",
+    "phone_number": "98860 55443",
+    "product_or_service": "NovaHome FrostFree 340L refrigerator",
+    "complaint_category": "General Inquiry",
+    "issue_description": "Customer wants to know about the possibility of purchasing an extended warranty, its cost, and coverage details, including compressor coverage.",
+    "resolution_provided": null,
+    "is_complaint": "No",
+    "escalation_required": "No",
+    "supporting_document_available": "No",
+    "overall_case_status": "Open"
+  }
+}

@@ -1,0 +1,14 @@
+To: ravi.kumar@example.com
+Subject: Re: Defective washing machine - demand for replacement
+X-Grounding-Check: Passed
+
+Dear Ravi Kumar,
+
+Thank you for reaching out to us regarding your NovaHome AquaClean 7kg front-load washing machine (Order No. NH-558120). We acknowledge your concern about the technical issue you've experienced, where the drum does not spin and it shows error code E21.
+
+We understand the inconvenience this has caused and are sorry to hear that the issue persists despite our previous efforts. Our technician visited on 18 August 2026 to replace the drain pump, but the problem returned. A second visit was scheduled for 25 August, but unfortunately, it did not occur as expected.
+
+We appreciate your patience and will ensure that the relevant team reviews this matter thoroughly. We will get back to you with further updates as soon as possible.
+
+Warm regards,
+Customer Support Team

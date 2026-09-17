@@ -1,0 +1,17 @@
+{
+  "source_file": "complaint_003.docx",
+  "processed_at": "2026-09-17T16:17:49",
+  "data": {
+    "customer_name": "Mohammed Irfan",
+    "email": "irfan.m@example.com",
+    "phone_number": "99001 22334",
+    "product_or_service": "Zenbook Air 14 Laptop (16GB / 512GB)",
+    "complaint_category": "Delivery & Shipping",
+    "issue_description": "Laptop delivery delayed beyond the promised date of 06 September 2026. The tracking status shows 'In transit - Hyderabad hub' for the last six days. Customer was informed by a chat agent on 10 September 2026 that a query had been raised with the courier partner, but no update has been received since.",
+    "resolution_provided": "Query raised with the courier partner, but no update received.",
+    "is_complaint": "Yes",
+    "escalation_required": "Yes",
+    "supporting_document_available": "No",
+    "overall_case_status": "In Progress"
+  }
+}

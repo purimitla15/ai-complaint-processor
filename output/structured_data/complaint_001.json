@@ -1,0 +1,17 @@
+{
+  "source_file": "complaint_001.pdf",
+  "processed_at": "2026-09-17T16:09:29",
+  "data": {
+    "customer_name": "Ravi Kumar",
+    "email": "ravi.kumar@example.com",
+    "phone_number": "+91 98450 12345",
+    "product_or_service": "NovaHome AquaClean 7kg front-load washing machine (Order No. NH-558120)",
+    "complaint_category": "Technical Issue",
+    "issue_description": "The washing machine stopped working; the drum does not spin and it shows error code E21.",
+    "resolution_provided": null,
+    "is_complaint": "Yes",
+    "escalation_required": "Yes",
+    "supporting_document_available": "Yes",
+    "overall_case_status": "Open"
+  }
+}

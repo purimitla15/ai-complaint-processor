@@ -1,0 +1,12 @@
+To: ananya.reddy@example.com
+Subject: Re: Issue with PayWise Mobile App Login
+X-Grounding-Check: Revised
+
+Dear Ananya Reddy,
+
+Thank you for reaching out to us regarding your issue with the PayWise Mobile App. We understand that you are experiencing difficulties logging in after the app update on 11 September 2026. The app is showing 'Session expired, please try again' after you enter the OTP, and you have tried reinstalling the app and using both mobile data and WiFi without success.
+
+We appreciate your patience and are currently reviewing your case. Our team will thoroughly examine the issue and provide you with a resolution as soon as possible.
+
+Warm regards,
+Customer Support Team

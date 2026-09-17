@@ -1,0 +1,17 @@
+{
+  "source_file": "complaint_002.txt",
+  "processed_at": "2026-09-17T16:12:29",
+  "data": {
+    "customer_name": "Priya Sharma",
+    "email": "priya.sharma@example.com",
+    "phone_number": "080-4123-9876",
+    "product_or_service": "FiberNet broadband 200 Mbps plan",
+    "complaint_category": "Billing & Payment",
+    "issue_description": "Double charge of Rs. 1,178 for the month of August 2026",
+    "resolution_provided": "Rs. 1,178 credited back to the card on 09 September 2026",
+    "is_complaint": "No",
+    "escalation_required": "No",
+    "supporting_document_available": "No",
+    "overall_case_status": "Resolved"
+  }
+}
