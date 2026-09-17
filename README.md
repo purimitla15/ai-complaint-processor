@@ -34,6 +34,11 @@ Tasks 2 and 3 depend on Task 1 but not on each other, so they **run in parallel*
 
 ## 3. Architecture
 
+![Architecture diagram](docs/architecture.png)
+
+<details>
+<summary>Mermaid version (text diagram)</summary>
+
 ```mermaid
 flowchart TD
     A[data/ folder<br/>.pdf .docx .txt] --> B[Document Discovery]
@@ -68,7 +73,9 @@ flowchart TD
     O1 & O2 & O3 & S & F --> R[final_report.csv]
 ```
 
-The same diagram is in [`docs/architecture.md`](docs/architecture.md).
+</details>
+
+Source files: [`docs/architecture.svg`](docs/architecture.svg) (editable vector) · [`docs/architecture.png`](docs/architecture.png) · [`docs/architecture.md`](docs/architecture.md) (Mermaid).
 
 ### How a structured LLM call works
 
@@ -139,7 +146,7 @@ ai-complaint-processor/
 │   ├── customer_emails/
 │   ├── case_summaries/
 │   └── final_report.csv
-├── docs/architecture.md
+├── docs/                        # architecture diagram (png, svg, mermaid)
 ├── scripts/generate_sample_data.py
 ├── src/
 │   ├── config.py                # settings from environment, with validation

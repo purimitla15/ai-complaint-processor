@@ -9,16 +9,16 @@
 | Priority | Low |
 
 ## Case Overview
-Customer Suresh Iyer contacted support regarding a NovaHome FrostFree 340L refrigerator purchased in March 2026. He is inquiring about purchasing an extended warranty.
+Customer Suresh Iyer inquired about purchasing an extended warranty for their NovaHome FrostFree 340L refrigerator purchased in March 2026.
 
 ## Key Issue
-The customer wants to know if an extended warranty is available, along with its cost, coverage details, and whether it includes the compressor.
+The customer wants to know the cost, coverage details, and whether the compressor is included in the extended warranty.
 
 ## Action Taken
 No action recorded
 
 ## Current Status
-The case is open as an inquiry since it is a general question regarding warranty options rather than a complaint.
+The case is open as an inquiry requiring a response.
 
 ## Recommended Next Action
-Respond to the customer with available extended warranty plans, pricing, coverage details, and compressor inclusion status.
+Provide the customer with the available extended warranty options, pricing, coverage details, and compressor inclusion status.

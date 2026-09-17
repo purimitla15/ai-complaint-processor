@@ -1,13 +1,13 @@
 {
   "source_file": "complaint_006.docx",
-  "processed_at": "2026-09-17T17:28:11",
+  "processed_at": "2026-09-17T17:35:32",
   "data": {
     "customer_name": "Kavya Nair",
     "email": "kavya.nair@example.com",
     "phone_number": "+91 94470 67890",
     "product_or_service": "running shoes (Order ST-39021)",
     "complaint_category": "Refund & Return",
-    "issue_description": "The customer returned a pair of running shoes on 12 August 2026 which was received at the warehouse on 16 August 2026. Despite following up multiple times, the refund of Rs. 4,499 has not been received after more than four weeks.",
+    "issue_description": "The customer returned a pair of running shoes on 12 August 2026 which was received at the warehouse on 16 August 2026. More than four weeks have passed without receiving the promised refund despite multiple follow-ups.",
     "resolution_provided": null,
     "is_complaint": "Yes",
     "escalation_required": "Yes",

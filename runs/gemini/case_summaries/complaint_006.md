@@ -9,16 +9,16 @@
 | Priority | High |
 
 ## Case Overview
-Kavya Nair purchased running shoes under Order ST-39021 and returned them due to incorrect sizing. The warehouse received the return on 16 August 2026, but the Rs. 4,499 refund has not been issued.
+Customer Kavya Nair returned a pair of running shoes from Order ST-39021 due to incorrect sizing. The return was received at the warehouse on 16 August 2026, but the promised refund has not been issued.
 
 ## Key Issue
-The customer has not received her refund of Rs. 4,499 more than four weeks after the warehouse received her returned item.
+The customer has not received her refund of Rs. 4,499 more than four weeks after the warehouse received the returned item.
 
 ## Action Taken
-No company resolution recorded, though previous support interactions logged ticket SS-10442 and stated the refund was under process.
+No action recorded by company support staff regarding resolving the refund, though the customer has followed up via email, phone, and chat.
 
 ## Current Status
-The case status is open with an active customer request for manager escalation and immediate refund processing.
+The case status is currently Open with an explicit customer request for manager escalation.
 
 ## Recommended Next Action
-Review the attached return confirmation and chat transcripts, then escalate the case to finance to expedite the Rs. 4,499 refund.
+Escalate the case to a finance manager immediately, verify the warehouse receipt status, and process the Rs. 4,499 refund to the customer.

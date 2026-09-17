@@ -1,5 +1,9 @@
 # Architecture
 
+![Architecture diagram](architecture.png)
+
+## Mermaid version
+
 ```mermaid
 flowchart TD
     A[data/ folder<br/>.pdf .docx .txt] --> B[Document Discovery]

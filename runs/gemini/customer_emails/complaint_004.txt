@@ -1,14 +1,12 @@
 To: ananya.reddy@example.com
-Subject: Regarding your PayWise Mobile App account access
-X-Grounding-Check: Revised
+Subject: Update regarding your PayWise Mobile App account access
+X-Grounding-Check: Passed
 
 Dear Ananya Reddy,
 
-Thank you for contacting us regarding the issues you have experienced logging into your PayWise Mobile App following the update on 11 September 2026, where you receive a session expired error message after entering the OTP, and your concerns about verifying your electricity bill auto-pay due on 20 September.
+Thank you for contacting us regarding the issue you have experienced with logging into your PayWise Mobile App since the update on 11 September 2026, where you receive a session expired error after entering the OTP, as well as your concerns regarding your upcoming electricity bill auto-pay due on 20 September.
 
-We have received your message along with the attached screenshots and note that you have already tried reinstalling the app and testing on both mobile data and WiFi.
-
-The relevant team will review the matter and get back to you with further details.
+We acknowledge your request for help to regain access to your account and note that you have attached screenshots of the error message. Please be assured that our relevant team will review the matter and get back to you with the details.
 
 Warm regards,
 Customer Support Team

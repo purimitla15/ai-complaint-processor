@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="940" viewBox="0 0 1400 940" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <style>
+      .title { font-size: 26px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-size: 15px; fill: #475569; }
+      .h { font-size: 16px; font-weight: 700; fill: #0f172a; }
+      .t { font-size: 14px; fill: #334155; }
+      .s { font-size: 12.5px; fill: #64748b; }
+      .lbl { font-size: 12.5px; fill: #475569; font-style: italic; }
+      .mono { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #334155; }
+      .edge { stroke: #475569; stroke-width: 2; fill: none; }
+      .llm { stroke: #7c3aed; stroke-width: 1.6; fill: none; stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="940" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="40" y="50" class="title">AI Customer Complaint &amp; Case Processing System</text>
+  <text x="40" y="76" class="subtitle">Batch GenAI workflow · structured extraction · grounded email generation · case summaries</text>
+
+  <!-- ============ INPUT & INGESTION ============ -->
+  <rect x="40" y="110" width="240" height="130" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+  <text x="60" y="138" class="h">data/ folder</text>
+  <text x="60" y="163" class="mono">complaint_001.pdf</text>
+  <text x="60" y="183" class="mono">complaint_002.txt</text>
+  <text x="60" y="203" class="mono">complaint_003.docx</text>
+  <text x="60" y="223" class="mono">...</text>
+
+  <rect x="40" y="275" width="240" height="65" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+  <text x="60" y="302" class="h">Document Discovery</text>
+  <text x="60" y="324" class="s">supported: .pdf .docx .txt</text>
+
+  <rect x="40" y="375" width="240" height="80" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6"/>
+  <text x="60" y="402" class="h">Document Loader</text>
+  <text x="60" y="424" class="s">pypdf · python-docx · text</text>
+  <text x="60" y="443" class="s">(incl. DOCX tables)</text>
+
+  <path d="M160 240 V272" class="edge" marker-end="url(#arrow)"/>
+  <path d="M160 340 V372" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- Error handling -->
+  <rect x="40" y="505" width="240" height="110" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.6"/>
+  <text x="60" y="532" class="h" fill="#991b1b">Graceful failures</text>
+  <text x="60" y="556" class="t">SKIPPED · unsupported type</text>
+  <text x="60" y="578" class="t">FAILED · corrupt / empty /</text>
+  <text x="60" y="598" class="t">encrypted file</text>
+  <path d="M160 455 V502" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+  <text x="170" y="485" class="lbl" fill="#dc2626">on error</text>
+  <path d="M40 307 H22 V560 H37" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+
+  <!-- ============ WORKFLOW CONTAINER ============ -->
+  <rect x="320" y="100" width="660" height="560" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="8 6"/>
+  <text x="340" y="128" class="h">Per-document workflow</text>
+  <text x="540" y="128" class="s">(ThreadPool processes MAX_WORKERS documents at once)</text>
+
+  <!-- Loader -> Task 1 -->
+  <path d="M280 415 H302 V190 H347" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- Task 1 -->
+  <rect x="350" y="150" width="600" height="80" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+  <text x="370" y="178" class="h">Task 1 · Structured Extraction</text>
+  <text x="370" y="200" class="t">Document → ComplaintExtraction (Pydantic schema)</text>
+  <text x="370" y="219" class="s">name · email · phone · category · issue · resolution · complaint / escalation / evidence Y/N · status</text>
+
+  <!-- Branches -->
+  <path d="M490 230 V287" class="edge" marker-end="url(#arrow)"/>
+  <path d="M810 230 V287" class="edge" marker-end="url(#arrow)"/>
+  <text x="600" y="265" class="lbl">run in parallel</text>
+
+  <!-- Task 2 -->
+  <rect x="350" y="290" width="280" height="80" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+  <text x="370" y="318" class="h">Task 2 · Customer Email</text>
+  <text x="370" y="340" class="t">Doc + extracted data</text>
+  <text x="370" y="359" class="t">→ CustomerEmail</text>
+
+  <!-- Task 3 -->
+  <rect x="670" y="290" width="280" height="80" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+  <text x="690" y="318" class="h">Task 3 · Case Summary</text>
+  <text x="690" y="340" class="t">Doc + extracted data</text>
+  <text x="690" y="359" class="t">→ CaseSummary</text>
+
+  <!-- Grounding check -->
+  <path d="M490 370 V417" class="edge" marker-end="url(#arrow)"/>
+  <rect x="350" y="420" width="280" height="125" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+  <text x="370" y="448" class="h">Grounding Check</text>
+  <text x="370" y="470" class="t">1. Verifier LLM lists claims</text>
+  <text x="370" y="489" class="t">    + evidence quotes</text>
+  <text x="370" y="508" class="t">2. Code confirms quotes exist</text>
+  <text x="370" y="527" class="t">    in the source document</text>
+
+  <!-- Revise loop -->
+  <path d="M350 500 H334 V340 H347" stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#arrowAmber)"/>
+  <text x="332" y="590" class="lbl" fill="#b45309">unsupported claims →</text>
+  <text x="332" y="608" class="lbl" fill="#b45309">regenerate once with feedback</text>
+  <path d="M334 500 V575" stroke="#d97706" stroke-width="1.2" fill="none" stroke-dasharray="3 3"/>
+
+  <text x="660" y="600" class="t" font-weight="600">Email result:</text>
+  <text x="660" y="622" class="t">Passed · Revised · Flagged for human review</text>
+
+  <!-- ============ OUTPUTS ============ -->
+  <text x="1030" y="128" class="h">output/</text>
+
+  <rect x="1030" y="155" width="320" height="70" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.6"/>
+  <text x="1050" y="183" class="mono" font-weight="700">structured_data/*.json</text>
+  <text x="1050" y="206" class="s">validated extraction per document</text>
+
+  <rect x="1030" y="295" width="320" height="70" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.6"/>
+  <text x="1050" y="323" class="mono" font-weight="700">case_summaries/*.md</text>
+  <text x="1050" y="346" class="s">overview · issue · action · status · next step</text>
+
+  <rect x="1030" y="440" width="320" height="70" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.6"/>
+  <text x="1050" y="468" class="mono" font-weight="700">customer_emails/*.txt</text>
+  <text x="1050" y="491" class="s">with X-Grounding-Check header</text>
+
+  <rect x="1030" y="575" width="320" height="80" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="1050" y="605" class="mono" font-weight="700">final_report.csv</text>
+  <text x="1050" y="628" class="s">one row per input file, incl. FAILED /</text>
+  <text x="1050" y="645" class="s">SKIPPED rows with the error reason</text>
+
+  <path d="M950 190 H1027" class="edge" marker-end="url(#arrow)"/>
+  <path d="M950 330 H1027" class="edge" marker-end="url(#arrow)"/>
+  <path d="M630 475 H1027" class="edge" marker-end="url(#arrow)"/>
+  <path d="M1190 510 V572" class="edge" marker-end="url(#arrow)"/>
+  <path d="M1190 365 V437" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+  <path d="M1190 225 V292" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+  <text x="1200" y="548" class="lbl">aggregated</text>
+
+  <!-- Failures -> report -->
+  <path d="M160 615 V905 H1380 V615 H1353" stroke="#dc2626" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+
+  <!-- ============ LLM LAYER ============ -->
+  <rect x="320" y="705" width="660" height="170" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+  <text x="340" y="733" class="h">LLM Client layer</text>
+  <text x="490" y="733" class="s">src/llm/base.py · every task calls generate_structured(prompt, schema)</text>
+  <text x="340" y="760" class="t">JSON-schema constrained output → Pydantic validation → retry with exponential backoff</text>
+  <text x="340" y="781" class="t">(429 / 503 / timeout / invalid JSON) → fallback model → LLMError</text>
+
+  <rect x="340" y="800" width="195" height="58" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.4"/>
+  <text x="358" y="825" class="h">Ollama</text>
+  <text x="358" y="845" class="s">local · qwen2.5:7b (default)</text>
+  <rect x="553" y="800" width="195" height="58" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.4"/>
+  <text x="571" y="825" class="h">Google Gemini</text>
+  <text x="571" y="845" class="s">gemini-flash + lite fallback</text>
+  <rect x="766" y="800" width="195" height="58" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.4"/>
+  <text x="784" y="825" class="h">OpenAI</text>
+  <text x="784" y="845" class="s">gpt-4o-mini</text>
+
+  <path d="M650 660 V702" class="llm" marker-end="url(#arrow)"/>
+  <text x="662" y="688" class="lbl" fill="#6d28d9">all LLM calls</text>
+
+  <!-- ============ CROSS-CUTTING ============ -->
+  <rect x="1030" y="705" width="320" height="170" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.6"/>
+  <text x="1050" y="733" class="h">Cross-cutting</text>
+  <text x="1050" y="760" class="t">.env configuration (provider, model,</text>
+  <text x="1050" y="779" class="t">workers, retries, grounding check)</text>
+  <text x="1050" y="805" class="t">Logging → console + logs/app.log</text>
+  <text x="1050" y="831" class="t">pytest suite with a fake LLM</text>
+  <text x="1050" y="857" class="t">Exit code for schedulers / CI</text>
+</svg>
