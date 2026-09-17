@@ -146,6 +146,7 @@ ai-complaint-processor/
 │   ├── customer_emails/
 │   ├── case_summaries/
 │   └── final_report.csv
+├── runs/gemini/                 # same batch run on Gemini, for comparison
 ├── docs/                        # architecture diagram (png, svg, mermaid)
 ├── scripts/generate_sample_data.py
 ├── src/
@@ -351,6 +352,23 @@ Escalate the case to a manager and request a specific timeline for refund proces
 - **Passed** (1): the first draft had no unsupported claims.
 - **Revised** (4): unsupported statements were detected and removed by regeneration. Examples of rejected statements: *"improving our billing processes to prevent such issues"* (002), *"we do offer extended warranties for our products"* (005).
 - **Flagged** (1, `complaint_003`): kept for human review. In this case it is a **false positive**, because the job start date *is* in the complaint. This illustrates the verifier limitation described below.
+
+### Comparison run on Gemini (`runs/gemini/`)
+
+The same 8 input files were also processed with `LLM_PROVIDER=gemini` (`gemini-flash-latest`). The folder has the same layout as `output/`, so the two runs can be compared file by file.
+
+| File | Status | Category | Complaint | Escalation | Evidence | Case status | Priority | Email grounding |
+|---|---|---|---|---|---|---|---|---|
+| `complaint_001.pdf` | SUCCESS | Product Defect | Yes | Yes | Yes | Open | High | Passed |
+| `complaint_002.txt` | SUCCESS | Billing & Payment | Yes | No | No | Resolved | Low | Passed |
+| `complaint_003.docx` | SUCCESS | Delivery & Shipping | Yes | No | No | Open | Medium | Revised |
+| `complaint_004.pdf` | SUCCESS | Account & Access | Yes | No | Yes | Open | Medium | Passed |
+| `complaint_005.txt` | SUCCESS | General Inquiry | No | No | No | Open | Low | Passed |
+| `complaint_006.docx` | SUCCESS | Refund & Return | Yes | Yes | Yes | Open | High | Passed |
+| `complaint_007_corrupt.pdf` | FAILED | | | | | | | |
+| `complaint_008.xlsx` | SKIPPED | | | | | | | |
+
+Compared with the local `qwen2.5:7b` run, Gemini classifies `complaint_001` as *Product Defect* and needed fewer email revisions (5 of 6 drafts passed on the first attempt).
 
 ## 11. Key Design Decisions
 

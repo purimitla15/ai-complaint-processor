@@ -52,11 +52,11 @@ def _resolve_path(value: str) -> Path:
 def load_settings() -> Settings:
     load_dotenv(PROJECT_ROOT / ".env")
 
-    provider = os.getenv("LLM_PROVIDER", "gemini").strip().lower()
+    provider = os.getenv("LLM_PROVIDER", "ollama").strip().lower()
     default_models = {
         "gemini": "gemini-flash-latest",
         "openai": "gpt-4o-mini",
-        "ollama": "llama3.1",
+        "ollama": "qwen2.5:7b",
     }
 
     settings = Settings(
@@ -70,7 +70,7 @@ def load_settings() -> Settings:
         ollama_base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1"),
         data_dir=_resolve_path(os.getenv("DATA_DIR", "data")),
         output_dir=_resolve_path(os.getenv("OUTPUT_DIR", "output")),
-        max_workers=int(os.getenv("MAX_WORKERS", "2")),
+        max_workers=int(os.getenv("MAX_WORKERS", "1")),
         grounding_check=os.getenv("EMAIL_GROUNDING_CHECK", "true").strip().lower() in ("1", "true", "yes"),
         log_level=os.getenv("LOG_LEVEL", "INFO").upper(),
     )
